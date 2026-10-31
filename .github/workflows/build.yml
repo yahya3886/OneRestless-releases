@@ -1,4 +1,4 @@
-name: Build OneRestless APK
+name: Build APK
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build APK
+      - name: Make Script Executable & Build
         run: |
           chmod +x build_apk.sh
           ./build_apk.sh
@@ -31,9 +31,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: OneRestless v1.0.${{ github.run_number }}
+          name: Build v1.0.${{ github.run_number }}
           files: |
             *.apk
-            OneRestless.apk
+            *.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
